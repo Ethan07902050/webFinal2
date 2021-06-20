@@ -5,7 +5,7 @@ Date: 05/06/2018
 CMPE210 course project under Dr.Young Park
 '''
 from operator import attrgetter
-import simple_switch_13
+import mySwitch
 from ryu.controller import ofp_event
 from ryu.controller.handler import MAIN_DISPATCHER, DEAD_DISPATCHER
 from ryu.controller.handler import set_ev_cls
@@ -18,7 +18,7 @@ This script extends the already existing ryu script simple_switch_13.py.
 '''
 
 
-class SimpleMonitor(simple_switch_13.SimpleSwitch13):
+class SimpleMonitor(mySwitch.SimpleSwitch):
 
     # Set an interval for polling switch statistics to 2
     POLLING_INTERVAL = 2
