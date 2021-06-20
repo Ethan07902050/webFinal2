@@ -111,6 +111,7 @@ class SimpleSwitch(app_manager.RyuApp):
                     match = parser.OFPMatch(in_port=in_port,
                                             eth_type=ether_types.ETH_TYPE_IP,
                                             ipv4_src=srcip, ipv4_dst=dstip,
+                                            eth_dst=dst, eth_src=src,
                                             ip_proto=protocol)
             
                 #  if TCP Protocol
@@ -119,6 +120,7 @@ class SimpleSwitch(app_manager.RyuApp):
                     match = parser.OFPMatch(in_port=in_port,
                                             eth_type=ether_types.ETH_TYPE_IP,
                                             ipv4_src=srcip, ipv4_dst=dstip,
+                                            eth_dst=dst, eth_src=src,
                                             ip_proto=protocol, tcp_src=t.src_port,
                                             tcp_dst=t.dst_port)
             
@@ -128,6 +130,7 @@ class SimpleSwitch(app_manager.RyuApp):
                     match = parser.OFPMatch(in_port=in_port,
                                             eth_type=ether_types.ETH_TYPE_IP,
                                             ipv4_src=srcip, ipv4_dst=dstip,
+                                            eth_dst=dst, eth_src=src,
                                             ip_proto=protocol, udp_src=u.src_port,
                                             udp_dst=u.dst_port)
                 else:
@@ -148,13 +151,13 @@ class SimpleSwitch(app_manager.RyuApp):
                     self.add_flow(datapath, 1, match, actions)
 
                 ddos, ydist = self.pca.updatePCA(srcip, dstip)
-                self.logger.info('ydist: %f', ydist)
+                # self.logger.info('ydist: %f', ydist)
                 if ddos:
                     self.logger.info("\n___________________________________________________________________________________________")
                     self.logger.info("\n                                  DDOS DETECTED                                          \n")
                     self.logger.info("\n___________________________________________________________________________________________")                    
-                else:
-                    self.logger.info('normal traffic')
+                # else:
+                #    self.logger.info('normal traffic')
 
                 self.ddos = ddos
 
